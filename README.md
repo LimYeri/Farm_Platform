@@ -79,11 +79,13 @@
 
 **언어**<br>
 <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
- <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white"/><br>
+ <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white"/><br><br>
 **프레임워크/라이브러리**<br>
 <img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white"/> <br>
 
 **데이터베이스**<br>
 <img src="https://img.shields.io/badge/Sqlite-003B57?style=for-the-badge&logo=Sqlite&logoColor=white">
 
+**배포**<br>
+<img src="https://img.shields.io/badge/aws-232F3E?style=for-the-badge&logo=aws&logoColor=white">
 

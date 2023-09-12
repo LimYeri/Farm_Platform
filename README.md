@@ -16,10 +16,11 @@
  ✔️ 농산물 마켓: 농부가 재배부터 판매까지 믿고 사는 농산물  <br>
  ✔️ 농약 정보 : 농약 추천부터 사용방법까지 농약에 대한 모든 것 <br><br>
 
-<img width="290" alt="스플래시" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/5d15ea1d-62d6-4079-a59f-d6b08d6359b7"><br>
+<img width="290" alt="스플래시" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/5d15ea1d-62d6-4079-a59f-d6b08d6359b7">
+<img width="290" alt="스크린샷 2023-09-11 오전 12 05 49" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/184c7179-87a1-48e7-8a8d-768b0146fd21">
 <img width="290" alt="스크린샷 2023-09-11 오전 12 06 40" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/da01eae1-1369-4358-8f14-275299d5bad1"><br>
-<img width="290" alt="스크린샷 2023-09-11 오전 12 09 25" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/6956e437-870a-45c2-84d0-3faca7f3c676"><br>
-<img width="290" alt="스크린샷 2023-09-11 오전 2 08 35" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/28f31b58-ea7e-46a2-b7ea-074e8d38da29"><br>
+<img width="290" alt="스크린샷 2023-09-11 오전 12 09 25" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/6956e437-870a-45c2-84d0-3faca7f3c676">
+<img width="290" alt="스크린샷 2023-09-11 오전 2 08 35" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/28f31b58-ea7e-46a2-b7ea-074e8d38da29">
 <img width="290" alt="스크린샷 2023-09-11 오전 12 09 40" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/a52561f6-cea4-458b-aea9-3818445301a5"><br>
 <img width="1440" alt="스크린샷 2023-09-12 오전 1 09 10" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/8437a2b1-3200-403a-a3f5-e24ea860b192"><br>
 
@@ -78,7 +79,7 @@
 
 **언어**<br>
 <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
- <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white"/>
+ <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white"/><br>
 **프레임워크/라이브러리**<br>
 <img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white"/> <br>
 

@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/css/market.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h2 style="text-align: center; padding: 20px">
+        {% if type == 'fruits' %} 과일 {% elif type == 'vegetable' %} 채소 {%
+        elif type == 'herbs' %} 나물 {% elif type == 'mushroom' %} 버섯 {% elif
+        type == 'grain' %} 곡물 {% elif type == 'nuts' %} 견과 {% elif type ==
+        'root' %} 뿌리 {% elif type == 'non-specified' %} 기타 작물 {% else %}
+        전체 {% endif %}
+      </h2>
+
+      {% if user.is_authenticated %}
+      <p>안녕하세요 {{user.first_name}} 님 🥦</p>
+      {% endif %}
+
+      <form method="POST" action="{% url 'productlist' %}">
+        {% csrf_token %}
+        <input type="text" name="searched" />
+        <button type="submit" id="search_btn">검색</button>
+
+        {% if searched %}
+        <p>검색하신 {{ searched }} 정보입니다.</p>
+        <section id="tab-section-1" class="tab-section">
+          <div class="flexWrap">
+            {% for product in products %}
+            <div onclick="location.href='{{product.pk}}'">
+              <img src="{{product.image.url}}" />
+              <p class="title">{{product.seller.first_name}}</p>
+              <p class="product" id="apple">{{product.productname}}</p>
+              <p class="price">{{ product.price }}원</p>
+            </div>
+            {% endfor %}
+          </div>
+        </section>
+        {% else %} {% endif %}
+      </form>
+    </header>
+    <main>
+      <section id="tab-section-1" class="tab-section">
+        <div class="flexWrap">
+          {% for list in productlist %}
+          <div onclick="location.href='{{list.pk}}'">
+            <img src="{{list.image.url}}" />
+            <p class="title">{{list.seller.first_name}}</p>
+            <p class="product" id="apple">{{list.productname}}</p>
+            <p class="price">{{ list.price }}원</p>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+    </main>
+    <script>
+      const $nav = document.querySelector("#tab-button-nav");
+      const $sections = document.querySelectorAll(".tab-section");
+
+      $nav.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("tab-button")) {
+          return;
+        }
+
+        const focusedTabId = e.target.dataset.tabSection;
+
+        $sections.forEach(($section) => {
+          if ($section.id === focusedTabId) {
+            $section.removeAttribute("hidden");
+          } else {
+            $section.setAttribute("hidden", true);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

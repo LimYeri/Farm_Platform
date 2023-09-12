@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>product post page</title>
+  </head>
+  <body>
+    <h1>상품등록 페이지</h1>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %} 상품종류<br />
+      <select name="type">
+        <option value="">상품종류</option>
+        <option value="fruit">과일</option>
+        <option value="grain">곡물</option>
+        <option value="herbs">나물</option>
+        <option value="mushroom">버섯</option>
+        <option value="nuts">견과류</option>
+        <option value="root">뿌리</option>
+        <option value="vegetable">채소</option>
+        <option value="none">기타</option>
+      </select>
+
+      상품이름<br />
+      <input type="text" name="productname" /><br />
+
+      <!-- 판매자<br>
+        <input type="text" name="seller"><br> -->
+
+      <input type="file" name="image" accept="image/*" required /><br />
+
+      상품가격<br />
+      <input type="text" name="price" /><br />
+
+      설명<br />
+      <textarea rows="10" cols="50" name="contents"></textarea><br />
+
+      <input type="submit" value="상품 등록" />
+    </form>
+  </body>
+</html>

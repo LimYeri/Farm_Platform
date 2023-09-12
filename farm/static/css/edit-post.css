@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&family=Roboto:wght@900&display=swap');
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.board_wrap{
+    margin-top: 50px;
+}
+
+.board_title{
+    font-size: 25px;
+    text-align: center;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.174);
+}
+
+.title-input{
+    width: 93%;
+    height: 35px;
+    border: none;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.174);
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 20px;
+
+}
+
+.content-input{
+    width: 95%;
+    height: 50vh;
+    border: 0.5px solid rgba(0, 0, 0, 0.174);
+    border-radius: 8px;
+    margin-left: 10px;
+    font-size: 17px;
+    font-weight: 100;
+    resize: none;
+}
+
+/* 이미지 업로드 */
+#image_preview{
+    padding: 10px;
+}
+
+#att_zone {
+    margin-top: 10px;
+    width: 86vw;
+    min-height: 100px;
+    padding: 10px;
+    border: 0.5px solid rgba(0, 0, 0, 0.174);
+}
+
+#att_zone:empty:before {
+    content: attr(data-placeholder);
+    color: #6a6a6a92;
+    font-size: .9em;
+}
+
+.upload{
+    width: 95.5%;
+    margin: 10px;
+    padding: 15px;
+    font-size: 17px;
+    background-color: #1E4527;
+    color: white;
+}

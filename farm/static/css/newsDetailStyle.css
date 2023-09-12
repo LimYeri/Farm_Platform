@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap");
+
+* {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.product {
+  position: absolute;
+  top: 7%;
+  width: 100vw;
+  height: 82vh;
+  text-align: left;
+  /* display: flex; */
+  /* border: solid 1px; */
+}
+
+.product img {
+  width: 100%;
+  height: 40vh;
+}
+
+.product p {
+  padding-left: 15px;
+}
+.product .date {
+  font-size: 13px;
+  /* text-decoration: underline; */
+  color: green;
+  font-weight: 300;
+}
+
+.product .title {
+  font-size: 20px;
+  margin-top: -10px;
+  font-weight: 700;
+}
+
+.product .content {
+  font-size: 14px;
+  color: rgba(61, 61, 61, 0.808);
+  margin-top: -10px;
+  font-weight: 100;
+  overflow: auto;
+}
+
+.content {
+  padding-right: 15px;
+  height: 34vh;
+  /* border: solid 1px; */
+  text-indent: 10px;
+}
+
+.box {
+  position: fixed;
+  width: 100vw;
+  margin-bottom: 50px;
+  bottom: 0;
+  /* border: solid 1px; */
+  /* text-align: center; */
+}
+
+.like {
+  width: 30px;
+  height: 25px;
+  /* border: solid 1px; */
+  /* margin-left: 40%; */
+  /* overflow: auto; */
+  float: left;
+  margin-left: 40%;
+}
+
+.link {
+  width: 27px;
+  height: 27px;
+  float: right;
+  margin-right: 40%;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+}
+
+.link img {
+  width: 27px;
+  height: 27px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.heartlike-btn {
+  position: relative;
+}
+
+.heartlike-btn:before {
+  position: absolute;
+  top: -12px;
+  left: 15px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  width: 15px;
+  height: 25px;
+  border-radius: 40px 40px 40px 40px;
+  background-color: lightgray;
+  content: "";
+  cursor: pointer;
+  transition: background 0.4s;
+}
+
+.heartlike-btn:after {
+  position: absolute;
+  top: -12px;
+  left: 0px;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+  width: 15px;
+  height: 25px;
+  border-radius: 40px 40px 40px 40px;
+  background-color: lightgray;
+  content: "";
+  cursor: pointer;
+  transition: background 0.4s;
+}
+
+.heartlike-btn.liked::before,
+.heartlike-btn.liked::after {
+  background-color: #ff0048;
+}
+
+.heartlike-btn.liked {
+  animation: liked 0.4s ease;
+}
+
+/* @keyframes liked{
+    0%{
+        transform: scale(.8);
+    }
+    50%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+} */
+
+.commentInput {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 50px;
+  width: 100%;
+}

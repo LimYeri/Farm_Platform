@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, minimum-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/newsListStyle.css'%}">
+</head>
+<body>
+    <header>
+        <h2 style="text-align: center; padding: 20px;">최신 농촌 정보</h2>
+    </header>
+    <div class="search">
+        <form action="{% url 'newsSearch'%}" method="POST">
+            {% csrf_token %}
+            <input type="text" placeholder="검색어 입력" name="searched">
+            <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+        </form>
+    </div>
+    <div style="text-align:center;">
+        <button class="news"><a href="https://www.nongmin.com/">농민신문 보러가기</a></button>
+    </div>
+    <section id="tab-section-1" class="tab-section">
+        <div class="flexWrap">
+            {% for n in news_list %}
+                <a href="{{ n.get_absolute_url }}/newsDetail">
+                    <div class="post">{% if n.img %} <img src="{{ n.img.url }}"> {% else %} <img src="/static/img/sample.jpg"> {% endif %}
+                        <p class="date">{{ n.created_at | date:'Y-m-d' }}</p>
+                        <p class="title">{{ n.title }}</p>
+                        <p class="content">{{ n.content }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+    {% if user.is_staff %}
+        <div style="width:100%; position: fixed; margin-bottom: 50px; bottom: 0;">
+            <div style="text-align: center;">
+                <button class="newspost"><a href="{% url 'newsCreate' %}">글쓰기</a></button>
+            </div>
+        </div>
+    {% endif %}
+</body>
+</html>
+
+
+<!-- {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>농촌 뉴스 리스트</title>
+</head>
+<body>
+    <h2>농촌 뉴스 리스트</h2>
+    {% if user.is_authenticated %}
+        <a href="{% url 'newsCreate'%}">글쓰기</a>
+    {% endif %}
+
+    <table class="writelist2" style="margin-bottom : 270px">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for n in news_list %}
+                <tr>
+                    <td>{{ n.id }}</td>
+                    <td class="title" style="cursor: pointer;">
+                        <a href="{{ n.get_absolute_url }}/newsDetail">{{ n.title }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html> -->

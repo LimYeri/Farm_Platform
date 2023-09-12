@@ -1,0 +1,129 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static "css/view-post.css"%}">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  </head>
+  <body>
+    <div class="board_wrap">
+      <div class="board_write_wrap">
+        <div class="board_write">
+          <div class="title">{{board.title}}</div>
+          <div class="witer-info">
+            <div class="wrap">
+              <div class="user">작성자: {{board.user.first_name}}</div>
+              
+            </div>
+            <!--<div class="location-info">📍부안군 부안읍</div>-->
+            <div class="wrap2">
+              <div class="date">{{board.date}}</div>
+              
+        {% if user == board.user %}
+                <div class="btn-wrap">
+                <button onclick="location.href='{%url 'detail_edit' board.pk %}'" class="edit">수정</button>
+                <button onclick="location.href='{% url 'detail_delete' board.pk %}'"class="delete" id="delete-button">삭제</button>
+              </div>
+      {%endif%}
+            
+            </div>
+          </div>
+          <div class="text-div">
+            {% if board.image %}
+            <img src="{{ board.image.url }}" class="img-section" />
+             {% else %}
+            <img src="/static/img/sample.jpg" />
+                {% endif %}
+            {{board.content}}
+          </div>
+          <div class="btn-wrap" style="margin: 25px 0px 0px 0px; display: flex">
+            <!--<div class="content">
+              <span class="heart" style="margin-top: 2px"></span>
+              <span class="text" style="font-size: 15px">좋아요</span>
+              <span class="numb"></span>
+            </div>-->
+            <div class="comment-num">
+              <span class="comment-icon"></span>
+              <span class="text" style="position: absolute; font-size: 15px "
+                >✍ 댓글  {% if comments %}{{ comments|length }}{% endif %}</span>
+              <span class="comment-numb"></span>
+            </div>
+          </div>
+
+          <div class="comment-wrap">
+            <!--댓글 create-->
+            {% if user.is_authenticated %}
+            <form action="{% url 'comment_create' board.pk %}" method="POST">
+              {% csrf_token %}
+              <input
+                type="text"
+                class="comment"
+                placeholder="댓글을 입력하세요."
+                name="content"
+                required
+                id="id_content"
+              />
+              <button class="submit">작성</button>
+            </form>
+
+            {% endif %}
+
+<!--read-->
+   
+    
+      {% for comment in comments %}
+
+         <div class="comment-content">
+              <div class="username">{{ comment.user.first_name }}</div>
+              <div class="comment-view">{{ comment.content }}</div>
+            </div>
+        <!--댓글 delete-->
+        {% if user == comment.user %}
+        <form
+          action="{% url 'comment_delete' board.pk comment.pk %}"
+          method="POST"
+          class="d-inline"
+        >
+          {% csrf_token %}
+          <input type="submit" value="DELETE" />
+        </form>
+        {% endif %}
+      </li>
+      {% empty %}
+      <p>댓글이 없어요..</p>
+      {% endfor %}
+    
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const deleteButton = document.getElementById("delete-button");
+      deleteButton.addEventListener("click", confirmdeleteButton);
+      function confirmdeleteButton() {
+        const confirmed = confirm("해당 게시글을 삭제하시겠습니까?");
+        if (confirmed) {
+        }
+      }
+
+      // 좋아요 버튼
+      $(document).ready(function () {
+        $(".content").click(function () {
+          $(".content").toggleClass("heart-active");
+          $(".text").toggleClass("heart-active");
+          $(".numb").toggleClass("heart-active");
+          $(".heart").toggleClass("heart-active");
+        });
+      });
+    </script>
+  </body>
+</html>

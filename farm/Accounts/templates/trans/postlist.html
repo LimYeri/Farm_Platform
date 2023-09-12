@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/css/market.css' %}">
+</head>
+<body>
+    <header>
+        <h2 style="text-align: center; padding: 20px;">🥦 {{user}} 님이 작성하신 상품 목록</h2>
+        <!-- {% if user.is_authenticated %}
+        <p>안녕하세요 🥦 {{user}}님 </p>
+        {% endif %} -->
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="searched">
+            <button type="submit" id="search_btn">검색</button>
+    
+            {% if searched %}        
+            <p> 검색하신 {{ searched }} 정보입니다. </p>
+            <section id="tab-section-1" class="tab-section">
+                <div class="flexWrap">
+                    {% for product in products %}
+                        <div onclick="location.href='trans/list/{{product.pk}}'"><img src="{{product.image.url}}">
+                            <p class="title">{{product.seller}}</p>
+                            <p class="product" id="apple">{{product.productname}}</p>
+                            <p class="price">{{ product.price }}원</p>
+                        </div>      
+                    {% endfor %}
+                </div>
+            </section>
+            {% else %}        
+                    
+            {% endif %}
+            
+        </form>
+
+    </header>
+    <main>
+        <section id="tab-section-1" class="tab-section">
+            <div class="flexWrap">
+                {% for list in productlist %}
+                <div onclick="location.href='/trans/list/{{list.pk}}'"><img src="{{list.image.url}}">
+                    <p class="title">{{list.seller}}</p>
+                    <p class="product" id="apple">{{list.productname}}</p>
+                    <p class="unit">단위</p>
+                    <p class="price">{{ list.price }}원</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+    <script>
+        const $nav = document.querySelector('#tab-button-nav')
+        const $sections = document.querySelectorAll('.tab-section');
+
+        $nav.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('tab-button')) {
+                return;
+            }
+
+            const focusedTabId = e.target.dataset.tabSection;
+
+            $sections.forEach(($section) => {
+                if ($section.id === focusedTabId) {
+                    $section.removeAttribute('hidden');
+                } else {
+                    $section.setAttribute('hidden', true);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

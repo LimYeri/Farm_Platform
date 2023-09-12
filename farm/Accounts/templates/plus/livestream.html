@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live</title>
+    <link rel="stylesheet" href="{% static 'css/livestream.css'%}">
+</head>
+
+<body>
+    <div class="live-container">
+        <div class="live-header">
+            <div class="live-user">
+                <img src="/img/하오하오.jpg">
+                <span class="username">푸바오</span>
+            </div>
+            <button id="start-stream-button" class="end-live-button">라이브 시작</button>
+            <button id="stop-stream-button" class="end-live-button" disabled>라이브 중단</button>
+        </div>
+        <div class="live-overlay"></div>
+        <video id="streaming-video" autoplay playsinline></video>
+        <div class="live-message" id="live-message">라이브에 참여해보세요!</div>
+        <p class="live-end" id="live-end"></p>
+        <div class="comments">
+            <div id="comment-section">
+                <ul id="comment-list"></ul>
+                <div class="comment-input">
+                    <input type="text" id="comment-input" placeholder="댓글을 입력하세요" disabled>
+                    <button id="comment-button" disabled>작성</button>
+                </div>
+            </div>
+        </div>
+        <div class="live-status">
+            <p id="status-message"></p>
+            <p id="live-ended-message" class="live-ended-message"></p>
+        </div>
+<script>
+    const startStreamButton = document.getElementById('start-stream-button');
+        const stopStreamButton = document.getElementById('stop-stream-button');
+        const videoElement = document.getElementById('streaming-video');
+        const liveMessage = document.getElementById('live-message');
+        const liveEnd = document.getElementById('live-end');
+        const commentInput = document.getElementById('comment-input');
+        const commentButton = document.getElementById('comment-button');
+        const commentList = document.getElementById('comment-list');
+        let stream;
+
+        startStreamButton.addEventListener('click', startStreaming);
+        stopStreamButton.addEventListener('click', confirmStopStreaming);
+        commentButton.addEventListener('click', addComment);
+
+        function startStreaming() {
+            liveMessage.style.opacity = '0';
+            liveMessage.style.visibility = 'hidden';
+
+            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                .then(mediaStream => {
+                    stream = mediaStream;
+                    videoElement.srcObject = stream;
+                    videoElement.play();
+                    startStreamButton.disabled = true;
+                    stopStreamButton.disabled = false;
+                    commentInput.disabled = false; // 댓글 입력창 활성화
+                    commentButton.disabled = false; // 댓글 작성 버튼 활성화
+                })
+                .catch(error => {
+                    console.error('Error starting stream:', error);
+                });
+        }
+
+        function confirmStopStreaming() {
+            const confirmed = confirm('라이브 방송을 정말 중단하시겠습니까?');
+            if (confirmed) {
+                stopStreaming();
+            }
+        }
+
+        function stopStreaming() {
+            if (stream) {
+                const tracks = stream.getTracks();
+                tracks.forEach(track => track.stop());
+                videoElement.srcObject = null;
+                startStreamButton.disabled = false;
+                stopStreamButton.disabled = false;
+                commentInput.disabled = true; // 댓글 입력창 비활성화
+                commentButton.disabled = true; // 댓글 작성 버튼 비활성화
+                const liveEnd = document.getElementById('live-end');
+                liveEnd.innerHTML = '라이브가 종료되었습니다.'
+            }
+        }
+
+       function addComment() {
+            const commentText = commentInput.value.trim();
+            if (commentText) {
+                const commentItem = document.createElement('li');
+
+                // 사용자 이름과 작성 시간 추가
+                const userInfo = document.createElement('span');
+                userInfo.textContent = '사용자 이름 - ' + getCurrentTime();
+                commentItem.appendChild(userInfo);
+
+                // 댓글 추가
+                const commentContent = document.createElement('p');
+                commentContent.textContent = commentText;
+                commentItem.appendChild(commentContent);
+
+                // 댓글을 맨 마지막에 추가
+                commentList.appendChild(commentItem);
+
+                commentInput.value = '';
+
+                // 스크롤을 제일 아래로 이동
+                commentList.scrollTop = commentList.scrollHeight;
+
+                if (commentList.childElementCount >= 7) {
+                    commentList.style.overflowY = 'scroll';
+                }
+            }
+        }
+
+        // 현재 시간을 문자열로 반환하는 함수
+        function getCurrentTime() {
+            const now = new Date();
+            return `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+        }
+
+        commentInput.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // 폼 제출 방지
+                    commentButton.click(); // 작성 버튼 클릭
+                }
+            });
+            
+</script>
+</body>
+
+</html>

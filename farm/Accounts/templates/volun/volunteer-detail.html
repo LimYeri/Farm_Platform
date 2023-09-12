@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      maximum-scale="1,"
+      minimum-scale="1"
+    />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/css/product-detail.css' %}" />
+  </head>
+  <body>
+    <div class="product">
+      {% if post.image %}
+      <img src="{{post.image.url}}" alt="" height="600" />
+      {% endif %}
+      <p class="store-name">{{post.writer.first_name}}</p>
+      <p class="product-name">{{post.title}}</p>
+      <p style="color: #676767">{{post.contents}}</p>
+      <div class="priceWrap">
+        <div class="price-info">시간</div>
+        <div class="price">
+          <div class="price-num">{{post.hours}}</div>
+          &nbsp;시간
+        </div>
+      </div>
+      <p style="color: #676767">{{post.start_period}} ~ {{post.end_period}}</p>
+      <!-- <p style="color: #676767;">{{post.end_period}}</p> -->
+      <p>좋아요 수 : {{post.like_users.all|length}}</p>
+      {% if check %}
+      <div class="buyWrap">
+        <button
+          class="add-to-cart"
+          onclick="location.href='/volunteer/{{post.pk}}/modify'"
+        >
+          수정하기
+        </button>
+        <button
+          class="add-to-cart"
+          onclick="location.href='/volunteer/{{post.pk}}/delete'"
+          style="margin-bottom: 10px"
+        >
+          삭제하기
+        </button>
+        <button
+          class="buy"
+          onclick="location.href='/chat/{{post.pk}}'"
+          style="margin-bottom: 20px"
+        >
+          채팅창
+        </button>
+      </div>
+      {% endif %} {% if not check %}
+      <div class="buyWrap">
+        <button class="buy" onclick="location.href='/chat/{{post.pk}}'">
+          채팅하기
+        </button>
+        <form action="{% url 'volunteer_like' post.pk %}" method="POST">
+          {% csrf_token %} {% if request.user in post.like_users.all %}
+          <button
+            class="add-to-cart"
+            id="add-cart"
+            onclick="location.href='/volunteer/{{post.pk}}/like'"
+          >
+            좋아요 취소
+          </button>
+          {% else %}
+          <button
+            class="add-to-cart"
+            id="add-cart"
+            onclick="location.href='/volunteer/{{post.pk}}/like'"
+          >
+            좋아요
+          </button>
+          {% endif %}
+        </form>
+      </div>
+      {% endif %}
+
+      <table>
+        <p style="margin-bottom: 30px">
+          다른 {% if post.region == 'seoul' %} 서울 {% elif post.region ==
+          'metropolitan' %} 광역시 {% elif post.region == 'gangwon' %} 강원도 {%
+          elif post.region == 'gyeonggi' %} 경기도 {% elif post.region ==
+          'chungcheong' %} 충청도 {% elif post.region == 'gyeongsong' %} 경상도
+          {% elif post.region == 'jeolla' %} 전라도 {% elif post.region ==
+          'jeju' %} 제주도 {% endif %} 봉사
+        </p>
+        {% if posts %}
+        <div class="flexWrap">
+          {% for post in posts %}
+          <div onclick="location.href='/volunteer/list/{{post.pk}}'">
+            <img src="{{post.image.url}}" />
+            <p>{{post.title}}</p>
+            <p>{{post.writer}}</p>
+            <!-- <p class="price">{{product.productname}}</p> -->
+            <p>{{ post.hours }}시간</p>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p style="margin-bottom: 30px">
+          다른 {% if post.region == 'seoul' %} 서울 {% elif post.region ==
+          'metropolitan' %} 광역시 {% elif post.region == 'gangwon' %} 강원도 {%
+          elif post.region == 'gyeonggi' %} 경기도 {% elif post.region ==
+          'chungcheong' %} 충청도 {% elif post.region == 'gyeongsong' %} 경상도
+          {% elif post.region == 'jeolla' %} 전라도 {% elif post.region ==
+          'jeju' %} 제주도 {% else %} 전체 {% endif %} 봉사 정보가 없습니다.
+        </p>
+        {% endif %}
+      </table>
+    </div>
+    {% if request.user in post.like_users.all %}
+    <script>
+      const removeCartBTN = document.getElementById("add-cart");
+      removeCartBTN.addEventListener("click", addCart);
+      function addCart() {
+        const confirmed = confirm(
+          "해당 상품을 좋아요 목록에서 제거하시겠습니까?"
+        );
+        if (confirmed) {
+          const confirmed = confirm(
+            "해당 상품을 좋아요 목록에서 제거했습니다."
+          );
+        }
+      }
+    </script>
+    {% else %}
+    <script>
+      const addCartBTN = document.getElementById("add-cart");
+      addCartBTN.addEventListener("click", addCart);
+      function addCart() {
+        const confirmed = confirm("해당 상품을 좋아요 목록에 담으시겠습니까?");
+        if (confirmed) {
+          const confirmed = confirm("해당 상품이 좋아요 목록에 담겼습니다.");
+        }
+      }
+    </script>
+    {% endif %}
+  </body>
+</html>

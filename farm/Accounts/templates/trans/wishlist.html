@@ -1,0 +1,212 @@
+{% load static %} {% load custom %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>document</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static '/css/wishlist.css' %}" />
+  </head>
+
+  <body>
+    <form
+      name="orderform"
+      id="orderform"
+      method="post"
+      class="orderform"
+      action="/Page"
+      onsubmit="return false;"
+    >
+      <h2 style="text-align: center; padding-top: 20px">
+        🥦 {{user.first_name}} 님이 찜한 상품 목록
+      </h2>
+      <div class="bigtext right-align sumcount" id="sum_p_num">
+        찜한 상품갯수: {{ products|length }}
+      </div>
+      <div class="basketdiv" id="basket">
+        <div class="row head">
+          <div class="subdiv">
+            <!-- <div class="check">선택</div> -->
+            <div class="img">이미지</div>
+            <div class="pname">상품명</div>
+          </div>
+          <div class="subdiv">
+            <div class="basketprice">가격(원)</div>
+            <div class="num">판매자</div>
+          </div>
+          <div class="subdiv">
+            <div class="basketcmd">채팅</div>
+          </div>
+          <div class="split"></div>
+        </div>
+        {% for product in products %}
+        <div class="row data">
+          <div
+            class="subdiv"
+            onclick="location.href='/tran/list/{{product.pk}}';"
+          >
+            <!-- <div class="check"><input type="checkbox" name="buy" value="260" checked=""
+                        onclick="javascript:basket.checkItem();">&nbsp;</div> -->
+            <div class="img">
+              <img src="{{product.image.url}}" width="45" />
+            </div>
+            <div class="pname">
+              <span
+                style="
+                  text-overflow: ellipsis;
+                  margin-left: 30%;
+                  margin-right: 30%;
+                "
+                >{{ product.productname }}</span
+              >
+            </div>
+          </div>
+          <div class="subdiv">
+            <div class="basketprice">
+              <input
+                type="hidden"
+                name="p_price"
+                id="p_price1"
+                class="p_price"
+                value="20000"
+              />{{ product.price }}
+            </div>
+            <div class="num">
+              <input
+                type="hidden"
+                name="p_price"
+                id="p_price1"
+                class="p_price"
+              />{{ product.seller.first_name }}
+            </div>
+          </div>
+          <div class="subdiv">
+            <div class="basketcmd">
+              <a href="/chat/{{product.pk}}" class="abutton">채팅</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- <div class="right-align basketrowcmd">
+            <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delCheckedItem();">선택 좋아요 취소</a>
+        </div> -->
+
+      <!-- <div class="bigtext right-align sumcount" id="sum_p_num">상품갯수:</div> -->
+    </form>
+
+    <script>
+      let basket = {
+        totalCount: 0,
+        totalPrice: 0,
+        //체크한 장바구니 상품 비우기
+        delCheckedItem: function () {
+          document
+            .querySelectorAll("input[name=buy]:checked")
+            .forEach(function (item) {
+              item.parentElement.parentElement.parentElement.remove();
+            });
+          //AJAX 서버 업데이트 전송
+
+          //전송 처리 결과가 성공이면
+          this.reCalc();
+          this.updateUI();
+        },
+        //장바구니 전체 비우기
+        delAllItem: function () {
+          document.querySelectorAll(".row.data").forEach(function (item) {
+            item.remove();
+          });
+          //AJAX 서버 업데이트 전송
+
+          //전송 처리 결과가 성공이면
+          this.totalCount = 0;
+          this.totalPrice = 0;
+          this.reCalc();
+          this.updateUI();
+        },
+        //재계산
+        reCalc: function () {
+          this.totalCount = 0;
+          this.totalPrice = 0;
+          document.querySelectorAll(".p_num").forEach(function (item) {
+            if (
+              item.parentElement.parentElement.parentElement
+                .previousElementSibling.firstElementChild.firstElementChild
+                .checked == true
+            ) {
+              var count = parseInt(item.getAttribute("value"));
+              this.totalCount += count;
+              var price =
+                item.parentElement.parentElement.previousElementSibling.firstElementChild.getAttribute(
+                  "value"
+                );
+              this.totalPrice += count * price;
+            }
+          }, this); // forEach 2번째 파라메터로 객체를 넘겨서 this 가 객체리터럴을 가리키도록 함. - thisArg
+        },
+        //화면 업데이트
+        updateUI: function () {
+          document.querySelector("#sum_p_num").textContent =
+            "상품갯수: " + this.totalCount.formatNumber() + "개";
+          document.querySelector("#sum_p_price").textContent =
+            "합계금액: " + this.totalPrice.formatNumber() + "원";
+        },
+        //개별 수량 변경
+        changePNum: function (pos) {
+          var item = document.querySelector("input[name=p_num" + pos + "]");
+          var p_num = parseInt(item.getAttribute("value"));
+          var newval = event.target.classList.contains("up")
+            ? p_num + 1
+            : event.target.classList.contains("down")
+            ? p_num - 1
+            : event.target.value;
+
+          if (parseInt(newval) < 1 || parseInt(newval) > 99) {
+            return false;
+          }
+
+          item.setAttribute("value", newval);
+          item.value = newval;
+
+          var price =
+            item.parentElement.parentElement.previousElementSibling.firstElementChild.getAttribute(
+              "value"
+            );
+          item.parentElement.parentElement.nextElementSibling.textContent =
+            (newval * price).formatNumber() + "원";
+          //AJAX 업데이트 전송
+
+          //전송 처리 결과가 성공이면
+          this.reCalc();
+          this.updateUI();
+        },
+        checkItem: function () {
+          this.reCalc();
+          this.updateUI();
+        },
+        delItem: function () {
+          event.target.parentElement.parentElement.parentElement.remove();
+          this.reCalc();
+          this.updateUI();
+        },
+      };
+
+      // 숫자 3자리 콤마찍기
+      Number.prototype.formatNumber = function () {
+        if (this == 0) return 0;
+        let regex = /(^[+-]?\d+)(\d{3})/;
+        let nstr = this + "";
+        while (regex.test(nstr)) nstr = nstr.replace(regex, "$1" + "," + "$2");
+        return nstr;
+      };
+    </script>
+  </body>
+</html>

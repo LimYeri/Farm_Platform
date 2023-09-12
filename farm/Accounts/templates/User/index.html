@@ -1,0 +1,207 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="welcome">
+      {% if user.is_authenticated %}
+      <h2> {{user.first_name}}님 행복한 하루 되세요!</h2>
+      {%endif%}
+      <img
+        src="{%static 'img/main_user.png'%}"
+        onclick="location.href='{%url 'mypage'%}'"
+      />
+    </div>
+    <div class="slideWrap">
+      <div class="slide-list">
+        <div class="slide">
+          <div
+            class="slide1"
+            onclick="location.href='{% url 'newsList'%}'"
+          >
+            <pre class="headline">
+최신 농업 소식 
+모음집</pre
+            >
+            <pre class="content">
+농업 기술의 혁신적인 세계를 엿보고 싶다면
+지금 클릭하세요!
+</pre
+            >
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide2" onclick="location.href='{%url 'volunteerindex'%}'">
+            <pre class="headline">
+농촌
+봉사활동
+</pre
+            >
+            <pre class="content">
+농촌 일손 부족, 상부상조 해결!
+</pre
+            >
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide3" onclick="location.href='{%url 'board'%}'">
+            <pre class="headline">농사랑방</pre>
+            <pre class="content">
+농부들의 자유로운 소통, 농업에 대한 열정과 지식을
+나누는 사랑방으로 초대합니다!
+</pre
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="button-list">
+      <button class="button-left">←</button>
+      <button class="button-right">→</button>
+    </div>
+
+    <div class="weatherWrap">
+      <h2 id="location" style="margin-left: 5px"></h2>
+      <div class="weatherSection">
+        <div class="section_left">
+          <div id="temperature"></div>
+          <div id="description"></div>
+        </div>
+        <div class="section_right">
+          <div class="humidity">
+            <img src="{%static "img/humidity.png"%}" style="opacity: 0.8; height:
+            28px" />
+            <div id="humidity"></div>
+          </div>
+          <div class="sunrise">
+            <img src="{%static "/img/sunrise.png"%}" />
+            <div id="sunrise_time"></div>
+          </div>
+          <div class="sunset">
+            <img src="{%static "img/sunset.png"%}" />
+            <div id="sunset_time"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="funcDiv1">
+      <div>
+        <img
+          src="{% static "img/live broadcast.png" %}"
+          onclick="location.href='{%url 'livestream'%}'"
+        />
+        <div
+          class="funcComment"
+          style="position: absolute; bottom: 18%; left: 9.5%; font-size: 10px"
+        >
+          라이브 판매
+        </div>
+      </div>
+      <div>
+        <img
+          src="{%static "img/farm-diary.png"%}"
+          onclick="location.href='{%url 'farmer_diary'%}'"
+        />
+        <div
+          class="funcComment"
+          style="position: absolute; bottom: 18%; left: 34.5%; font-size: 10px"
+        >
+          영농일지
+        </div>
+      </div>
+      <div>
+        <img src="{%static "img/cart.png"%}" onclick="location.href='{%url 'tranindex'%}'" />
+        <div
+          class="funcComment"
+          style="position: absolute; bottom: 18%; left: 56.5%; font-size: 10px"
+        >
+          농작물 마켓
+        </div>
+      </div>
+      <div>
+        <img
+          src="{%static "img/medicine.png"%}"
+          onclick="location.href='https://psis.rda.go.kr/psis/'"
+        />
+        <div
+          class="funcComment"
+          style="position: absolute; bottom: 18%; left: 80%; font-size: 10px"
+        >
+          농약정보
+        </div>
+      </div>
+    </div>
+    <!--     <div class="funcDiv2">
+        <div><img src="/img/chart.png" onclick="location.href='#'"><div class="funcComment" style="position: absolute; bottom: 4.5%; left: 9.7%; font-size: 10px;">농작물 시세</div></div>
+        <div><img src="/img/talk.png" style="margin-top: 7px;" onclick="location.href='#'"><div class="funcComment" style="position: absolute; bottom: 4.5%; left: 35.7%; font-size: 10px;">농사랑방</div></div>
+        <div><img src="/img/news.png" style=" margin-top: 10px; margin-left: 10px;" onclick="location.href='#'"><div class="funcComment" style="position: absolute; bottom: 4.5%; left: 58.5%; font-size: 10px;">농업뉴스</div></div>
+    </div>
+
+ -->
+
+    <script>
+      /* 슬라이드 */
+      /*
+      div사이즈 동적으로 구하기
+    */
+      const slideWrap = document.querySelector(".slideWrap");
+      const slideList = document.querySelector(".slide-list");
+      const slides = document.querySelectorAll(".slide");
+      let currentIndex = 0; // 현재 슬라이드 화면 인덱스
+
+      slides.forEach((slide) => {
+        slide.style.width = `${slideWrap.clientWidth}px`; // slide의 width를 모두 slideWrap의 width로 만들기
+      });
+
+      slideList.style.width = `${slideWrap.clientWidth * slides.length}px`; // slideList의 width를 slide의 width * slide의 개수로 만들기
+
+      /*
+      버튼에 이벤트 등록하기
+    */
+      const buttonLeft = document.querySelector(".button-left");
+      const buttonRight = document.querySelector(".button-right");
+
+      buttonLeft.addEventListener("click", () => {
+        currentIndex--;
+        currentIndex = currentIndex < 0 ? 0 : currentIndex; // index값이 0보다 작아질 경우 0으로 변경
+        slideList.style.marginLeft = `-${
+          slideWrap.clientWidth * currentIndex
+        }px`; // index만큼 margin을 주어 옆으로 밀기
+        clearInterval(interval); // 기존 동작되던 interval 제거
+        interval = getInterval(); // 새로운 interval 등록
+      });
+
+      buttonRight.addEventListener("click", () => {
+        currentIndex++;
+        currentIndex =
+          currentIndex >= slides.length ? slides.length - 1 : currentIndex; // index값이 slide의 총 개수보다 많아질 경우 마지막 인덱스값으로 변경
+        slideList.style.marginLeft = `-${
+          slideWrap.clientWidth * currentIndex
+        }px`; // index만큼 margin을 주어 옆으로 밀기
+        clearInterval(interval); // 기존 동작되던 interval 제거
+        interval = getInterval(); // 새로운 interval 등록
+      });
+
+      /*
+      주기적으로 화면 넘기기
+    */
+      const getInterval = () => {
+        return setInterval(() => {
+          currentIndex++;
+          currentIndex = currentIndex >= slides.length ? 0 : currentIndex;
+          slideList.style.marginLeft = `-${
+            slideWrap.clientWidth * currentIndex
+          }px`;
+        }, 2000);
+      };
+
+      let interval = getInterval(); // interval 등록
+    </script>
+    <script src="{%static "js/App.js"%}"></script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, minimum-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/BoardListStyle.css'%}">
+</head>
+<body>
+    <header>
+        <h2 style="text-align: center; padding: 20px;">농사랑방</h2>
+    </header>
+    <div class="search">
+        <form action="{% url 'search'%}" method="POST">
+            {% csrf_token %}
+            <input type="text" placeholder="검색어 입력" name="searched">
+            <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+        </form>
+    </div>
+
+    <div style="text-align: center;">
+            <button class="insert"><a href='{% url 'insert'%}'>글쓰기</a></button>
+    </div>
+
+    <section id="tab-section-1" class="tab-section">
+        <div class="flexWrap">
+            {% for list in Boardlist %}
+                <a href="{%url 'detail' list.id %}">
+                    <div class="post">{% if list.image %} <img src="{{ list.image.url }}"> {% else %} <img src="/static/img/sample.jpg"> {% endif %}
+                        <p class="date">{{ list.date | date:'Y-m-d' }}</p>
+                        <p class="user">작성자: {{ list.user.first_name}}</p>
+                        <p class="title">{{ list.title }}</p>
+                        <p class="content">{{ list.content }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        
+
+    </section>
+</body>
+</html>

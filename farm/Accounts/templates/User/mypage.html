@@ -1,0 +1,64 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Page</title>
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}" />
+  </head>
+
+  <body>
+    <header>
+      <h1>마이페이지</h1>
+    </header>
+    <main>
+      <section class="profile">
+        <h2>프로필 👤</h2>
+        <div id="profile-info">
+
+            <p><strong>이름:</strong> {{user.last_name}}{{user.first_name}}</p>
+            <p><strong>계정 정보:</strong> {{user.username}}</p>
+          <!-- User profile information will be displayed here -->
+        </div>
+      </section>
+      <section class="cart">
+        <h5 style="font-weight: 300">
+          ❗️각 내용을 확인하시려면 아래 텍스트를 눌러주세요.
+        </h5>
+        <h2 onclick="location.href='/tran/likelist'">내가 찜한 상품 🛒</h2>
+        <h2 onclick="location.href='/volunteer/likelist'">내가 찜한 봉사 🍀</h2>
+        <!--<h2 onclick="location.href='#'">내가 작성한 글 ✍🏻</h2>
+        <h2 onclick="location.href='#'">내가 찜한 글 ❤️</h2>-->
+        <h2 onclick="location.href='{% url "myfarm_love" %}'">나의 농사랑방 👩‍🌾</h2>
+        <h2 onclick="location.href='{% url "logout" %}'">로그아웃</h2>
+      </section>
+    </main>
+    <script>
+      // Fetch user's cart items from the server
+      fetchCartItems();
+
+
+
+      function fetchCartItems() {
+        const cartItems = document.getElementById("cart-items");
+
+        // Simulate user's cart items data (sample data)
+        const userCartItems = [
+          { name: "Product A", price: 20.0 },
+          { name: "Product B", price: 15.0 },
+        ];
+
+        userCartItems.forEach((item) => {
+          const cartItem = document.createElement("li");
+          cartItem.classList.add("cart-item");
+          cartItem.innerHTML = `
+      <span>${item.name}</span>
+      <span>$${item.price}</span>
+    `;
+          cartItems.appendChild(cartItem);
+        });
+      }
+    </script>
+  </body>
+</html>

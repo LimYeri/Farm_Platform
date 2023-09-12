@@ -1,0 +1,32 @@
+
+{%load static%} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static "css/form.css"%}">
+</head>
+<body>
+    <div class="func"><div class="big">Register</div><div class="small">회원으로 가입하고 더 많은 서비스를 이용해보세요!</div></div>
+    <form method="post" action="{% url "signup" %}">
+    <div class="formWrap">
+        {% csrf_token %}
+        <input type="text" class="name_box" placeholder="성" name="last_name" id="id_last_name"></input>
+        <input type="text" class="name_box" placeholder="이름" name="first_name" id="id_first_name"></input>
+        <input type="email" class="id_box_register" placeholder="you@example.com (아이디)" maxlength="154" name="email" id="id_email"></input>
+        <input type="password" class="password_box_register" placeholder="비밀번호" name="password" required id="id_password"></input>
+        <input type="password" class="password_box_register" placeholder="비밀번호 확인" name="password1" required id="id_passowrd1"></input>
+        <img class="userIMG" src="{%static 'img/user.png'%}">
+        <img class="mailIMG_register" src="{%static 'img/mail.png'%}">
+        <img class="pwIMG_register" src="{%static 'img/pw.png'%}" >
+        <img class="checkIMG" src="{%static 'img/check.png'%}">
+    </div>
+    <button class="okBTN_register">회원가입</button>
+    </form>
+    
+
+    <div class="comment_register">이미 회원이신가요?&nbsp;&nbsp;<a href="/html/login.html">로그인</a></div> <!-- &nbsp; 띄어쓰기 -->
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>product post page</title>
+</head>
+<body>
+    <h1>봉사 등록 페이지</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        봉사지역<br>
+        <select name="region">
+            <option value="">상품종류</option>
+            <option value="seoul">서울</option>
+            <option value="metropolitan">광역시</option>
+            <option value="gyeonggi">경기도</option>
+            <option value="gangwon">강원도</option>
+            <option value="chungcheong">충청도</option>
+            <option value="gyeongsong">경상도</option>
+            <option value="jeolla">전라도</option>
+            <option value="jeju">제주도</option>
+        </select><br>
+        
+        제목<br>
+        <input type="text" name="title"><br>
+
+
+        <input type="file" name="image" accept="image/*" required ><br>
+
+        봉사시간<br>
+        <input type="text" name="hours"><br>
+
+        봉사기간<br>
+        <input type="date" id="start" name="start_period"/>
+        <input type="date" id="start" name="end_period"/>
+        <br>
+        설명<br>
+        <textarea rows="10" cols="50" name="contents"></textarea><br>
+
+        <input type="submit" value="상품 등록">
+    </form>
+</body>
+</html>

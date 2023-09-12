@@ -1,0 +1,17 @@
+<!-- chat/templates/chat/index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Chat Rooms</title>
+  </head>
+  <body>
+    What chat room would you like to enter?<br />
+    <form action="{% url 'room' board.id %}" method="POST" class="d-inline">
+      {% csrf_token %}
+
+      <input type="submit" value="submit" />
+    </form>
+  </body>
+</html>
+<!--생성된 방 모델의 pk 값으로 room이름 생성-->

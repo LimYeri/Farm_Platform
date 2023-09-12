@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&family=Roboto:wght@900&display=swap");
+* {
+  font-family: "Noto Sans KR", sans-serif;
+}
+.location-wrap {
+  position: absolute;
+  top: 5%;
+  margin-left: 15px;
+}
+
+select {
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+  padding: 5px;
+}
+
+option {
+  font-size: 13px;
+}
+
+.search-box {
+  padding: 10px;
+  height: 30px;
+  background-color: #fff;
+  border: 0.5px solid #1e4527;
+  border-radius: 20px;
+  width: 30px;
+  margin-top: 10px;
+}
+
+.search-box {
+  width: 310px;
+}
+
+.search-btn {
+  text-decoration: none;
+  float: right;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1e4527;
+}
+
+.search-txt {
+  display: flex;
+  padding: 0;
+  width: 0px;
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  font-size: 1rem;
+  line-height: 30px;
+  transition: 0.4s;
+}
+
+.search-box > .search-txt {
+  width: 240px;
+  padding: 0 6px;
+}
+
+.content-wrap {
+  margin-top: 40px;
+  height: 60vh;
+  width: 89vw;
+}
+
+.contents {
+  width: 95%;
+  height: 15vh;
+  padding: 10px;
+  border-radius: 10px;
+  border: 0.1px solid rgba(0, 0, 0, 0.3);
+  background: rgba(217, 217, 217, 0);
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+  margin-top: 20px;
+}
+
+.show-content {
+  font-size: 15px;
+  font-weight: 100;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* 좋아요 버튼 */
+.content {
+  display: flex;
+  cursor: pointer;
+  width: 77px;
+  height: 20px;
+}
+
+.heart {
+  position: absolute;
+  background: url("static/img/like-btn.png") no-repeat;
+  background-size: 2900%;
+  height: 50px;
+  width: 50px;
+  transform: translate(-25%, -30%);
+}
+
+.text {
+  margin-left: 25px;
+  font-size: 13px;
+  color: black;
+}
+
+.text.heart-active {
+  color: #000;
+}
+
+.numb:before {
+  content: "12";
+  font-size: 13px;
+  margin-left: 5px;
+  font-weight: 600;
+  color: black;
+  position: absolute;
+}
+
+.numb.heart-active:before {
+  content: "13";
+  color: #000;
+}
+
+.heart.heart-active {
+  animation: animate 0.8s steps(28) 1;
+  background-position: right;
+}
+
+.comment-numb:before {
+  content: "12";
+  font-size: 13px;
+  margin-left: 75px;
+  font-weight: 600;
+  color: black;
+  position: absolute;
+}
+
+.comment-numb.heart-active:before {
+  content: "13";
+  color: #000;
+}
+
+/* 글쓰기 버튼 */
+.add-post {
+  width: 60px;
+  height: 60px;
+  background-color: #1e4527;
+  border-radius: 50%;
+  position: sticky;
+  bottom: 10%;
+  text-align: center;
+  align-items: center;
+  font-size: 40px;
+  color: white;
+  margin-left: 85%;
+}
+
+.insert {
+  background-color: rgba(0, 0, 0, 0.382);
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  width: 250px;
+  margin-top: 20px;
+  font-size: small;
+  border: 0px;
+}
+
+.insert a {
+  text-decoration-line: none;
+  color: white;
+}
+
+.search {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.search input {
+  width: 91%;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.search img {
+  position: absolute;
+  width: 17px;
+  top: 12px;
+  right: 20px;
+}
+
+a {
+  text-decoration-line: none;
+}

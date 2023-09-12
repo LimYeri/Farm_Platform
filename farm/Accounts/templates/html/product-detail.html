@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/product-detail.css">
+</head>
+<body>
+    <div class="product">
+        <img src="/img/하오하오.jpg">
+        <p class="store-name">하오의 사과 가게</p>
+        <p class="product-name">사과</p>
+        <p class="unit">1kg</p>
+        <div class="selectbox" >
+            <select id="cnt" name="cnt">
+                <option value="none">개수 선택</option>
+                <option value="1개">1</option>
+                <option value="2개">2</option>
+                <option value="3개">3</option>
+                <option value="4개">4</option>
+                <option value="5개">5</option>
+            </select>
+        </div>
+        <div class="priceWrap">
+            <div class="price-info">가격</div>
+            <div class="price"><div class="price-num">18,900</div>&nbsp;원</div>
+        </div>
+        <div class="buyWrap">
+            <button class="buy">구매하기</button>
+            <button class="add-to-cart" id="add-cart" >장바구니 담기</button>
+        </div>
+    </div>
+
+<script>
+    const addCartBTN = document.getElementById('add-cart');
+    addCartBTN.addEventListener('click', addCart);
+
+     function addCart() {
+            const confirmed = confirm('해당 상품을 장바구니에 담으시겠습니까?');
+            if (confirmed) {
+                const confirmed = confirm('해당 상품이 장바구니에 담겼습니다.'); 
+            }
+        }
+</script>
+</body>
+</html>

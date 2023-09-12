@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap');
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.product{
+    position: absolute;
+    top: 7%;
+    width: 100vw;
+    height: 90vh;
+    text-align: left;
+}
+
+.product img{
+    width: 100%;
+    height: 50vh;
+}
+
+.product p{
+    padding-left: 15px;
+}
+.product .store-name{
+    font-size: 17px;
+    text-decoration: underline;
+    font-weight: 800;
+}
+
+.product .product-name{
+    font-size: 17px;
+    margin-top: -15px;
+    font-weight: 500;
+    
+}
+
+.product .unit{
+    font-size: 13px;
+    color: rgba(61, 61, 61, 0.808);
+    margin-top: -17px;
+    font-weight: 100;
+}
+
+.selectbox{
+    padding-left: 15px;
+    width: 700px;
+}
+
+#cnt{
+    margin-top: 5px;
+    padding: 10px;
+    width: 93vw;
+    text-indent: 10px;
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 10px;
+}
+
+.priceWrap{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+.price-info{
+    font-size: 13px;
+    color: rgba(61, 61, 61, 0.619);
+    text-align: left;
+    font-weight: 300;
+}
+
+.price{
+    display: flex;
+    font-weight: 500;
+    font-size: 20px;
+}
+.price-num{
+    font-weight: 900;
+}
+
+.buyWrap{
+    margin: 15px;
+    margin-top: 25px;
+    width: 93vw;
+}
+
+.buy{
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #1E4527;
+    color: white;
+    border: none;
+}
+
+.add-to-cart{
+    border-radius: 10px;
+    margin-top: 10px;
+    border: solid #1E4527 1px;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: #1E4527;
+}

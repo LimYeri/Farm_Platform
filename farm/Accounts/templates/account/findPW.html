@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+    <div class="func"><div class="big">Find PW</div><div class="small">잊어버린 비밀번호도 쉽게 찾아보세요!</div></div>
+    <div class="formWrap">
+        <input type="email" class="id_box_register" placeholder="you@example.com"></input>
+        <img class="mailIMG_register" src="/img/mail.png">
+    </div>
+    <button class="okBTN_findPW" class="btn" onclick="openPopup()">비밀번호 찾기</button>
+    <div class="popup" id="popup">
+        <img src="/img/confirm.png">
+        <h2>임시 비밀번호 발급 안내</h2>
+        <p>입력한 이메일로 임시 비밀번호가 전송되었습니다.
+        메일로 전송된 비밀번호로 로그인 한 뒤,
+        새 비밀번호를 설정하시기 바랍니다.</p>
+        <button type="button" onclick="closePopup()">확인</button>
+    </div>
+
+
+<script>
+let popup = document.getElementById("popup");
+
+function openPopup(){
+    popup.classList.add("open-popup");
+}
+
+function closePopup(){
+    popup.classList.remove("open-popup");
+}
+
+
+</script>
+</body>
+</html>

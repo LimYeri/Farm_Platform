@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/css/market.css' %}" />
+  </head>
+  <body>
+    <div class="header">
+      <h2>봉사활동 모음</h2>
+      <p>상부상조 봉사활동</p>
+      <div>
+        {% if user.is_staff %}
+        <div style="float: right">
+          <button
+            class="newspost"
+            style="
+              background-color: white;
+              border-radius: 5px;
+              border: 0;
+              box-shadow: 2px 2px 2px 2px gray;
+            "
+          >
+            <a
+              href="{% url 'post' %}"
+              style="text-decoration-line: none; color: black"
+              >글쓰기</a
+            >
+          </button>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="flexWrap">
+      <div class="fruits">
+        <a href="{% url 'volunteerlist' %}?region=seoul"
+          ><img src="{% static '/img/seoul.jpeg' %}" /></a
+        >서울
+      </div>
+      <div class="vegetable">
+        <a href="{% url 'volunteerlist' %}?region=metropolitan"
+          ><img src="{% static '/img/GY.jpeg' %}" /></a
+        >광역시
+      </div>
+      <div class="herbs">
+        <a href="{% url 'volunteerlist' %}?region=gyeonggi"
+          ><img src="{% static '/img/gg.jpeg' %}" /></a
+        >경기도
+      </div>
+      <div class="mushroom">
+        <a href="{% url 'volunteerlist' %}?region=gangwon"
+          ><img src="{% static '/img/gw.jpeg' %}" /></a
+        >강원도
+      </div>
+      <div class="grain">
+        <a href="{% url 'volunteerlist' %}?region=chungcheong"
+          ><img src="{% static '/img/cc.jpeg' %}" /></a
+        >충청도
+      </div>
+      <div class="nuts">
+        <a href="{% url 'volunteerlist' %}?region=gyeongsong"
+          ><img src="{% static '/img/ks.jpeg' %}" /></a
+        >경상도
+      </div>
+      <div class="root">
+        <a href="{% url 'volunteerlist' %}?region=jeolla"
+          ><img src="{% static '/img/jl.jpeg' %}" /></a
+        >전라도
+      </div>
+      <div class="root">
+        <a href="{% url 'volunteerlist' %}?region=jeju"
+          ><img src="{% static '/img/jj.jpeg' %}" /></a
+        >제주도
+      </div>
+      <div class="root">
+        <a href="{% url 'volunteerlist' %}?region= "
+          ><img src="{% static '/img/all2.jpeg' %}" /></a
+        >전체
+      </div>
+    </div>
+    <img
+      src="{% static '/img/banner2.jpeg' %}"
+      style="width: 100vw; position: absolute; left: 0%; margin-top: 40px"
+    />
+  </body>
+</html>

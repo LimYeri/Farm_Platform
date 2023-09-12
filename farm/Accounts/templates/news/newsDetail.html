@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/newsDetailStyle.css'%}" />
+    <link rel="stylesheet" href="https://use.typekit.net/opg3wle.css" />
+    <link
+      rel="stylesheet"
+      href="https://demo.plantpot.works/assets/css/normalize.css"
+    />
+  </head>
+  <body>
+    <h2 style="text-align: center">최신 농촌 정보</h2>
+    <div class="product">
+      {% if news.img %}
+      <img src="{{ news.img.url }}" />
+      {% else %}
+      <img src="/static/img/sample.jpg" />
+      {% endif %}
+      <p class="date">{{ news.created_at | date:'Y-m-d' }}</p>
+      <p class="title">{{ news.title }}</p>
+      <p class="content">{{ news.content }}</p>
+    </div>
+    <div class="box">
+      <form action="{{ news.get_absolute_url }}/likes/" method="POST">
+        {% csrf_token %}
+        <div class="like">
+          <button
+            style="border: none"
+            class="heartlike-btn"
+            type="submit"
+          ></button>
+        </div>
+      </form>
+
+      <button type="button" class="link" onclick="copyUrl()">
+        <img src="/static/img/link2.png" alt="" />
+      </button>
+    </div>
+
+    <script>
+      const button = document.querySelector(".heartlike-btn");
+
+      {% if user in news.like_users.all %}
+          button.classList.add("liked");
+      {% endif %}
+      button.addEventListener("click", ()=> {
+          if(button.classList.contains("liked")){
+              button.classList.remove("liked");
+          } else {
+              button.classList.add("liked");
+          }
+      });
+    </script>
+    <script>
+      let nowUrl = window.location.href;
+
+      function copyUrl() {
+        //nowUrl 변수에 담긴 주소를
+        navigator.clipboard.writeText(nowUrl).then((res) => {
+          alert("주소가 복사되었습니다!");
+        });
+      }
+    </script>
+  </body>
+</html>

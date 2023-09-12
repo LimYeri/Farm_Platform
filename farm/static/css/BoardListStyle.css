@@ -1,0 +1,227 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&family=Roboto:wght@900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#tab-button-nav{
+    margin-left: 15px;
+}
+
+.tab-button{
+    border: none;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.tab-button:focus{
+    border-bottom: 0.5px solid green;
+    color: green;
+}
+
+
+
+.flexWrap {
+    margin-left: 15px;
+    margin-top: 20px;
+    display: flex;
+    height: 50px;
+    width: 95%;
+    flex-wrap: wrap;
+    gap: 20px;
+    color: black;
+}
+
+.flexWrap div {
+    width: 170px;
+    height: 250px;
+    font-size: 15px;
+    font-weight: 200;
+    text-align: left;
+    color: black;
+}
+
+.flexWrap div img {
+    width: 170px;
+    height: 150px;
+    border-radius: 5%;
+}
+
+.date {
+    margin-left: 5px;
+    font-weight: 300;
+    font-size: 10px;
+    color: green;
+}
+
+.content {
+    margin-left: 5px;
+    font-size: 11px;
+    color: #939393;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+.price {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.title {
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.post {
+    border-radius: 5%;
+    border: #d1d0d0 solid 0.1px;
+
+}
+
+.search {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.search input {
+    width: 91%;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+}
+
+.search img {
+    position : absolute;
+    width: 17px;
+    top: 12px;
+    right: 20px;
+} */
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&family=Roboto:wght@900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.flexWrap {
+  margin-left: 12px;
+  margin-top: 20px;
+  display: flex;
+  height: 50px;
+  width: 95%;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: black;
+}
+
+.flexWrap div {
+  width: 170px;
+  height: 250px;
+  font-size: 15px;
+  font-weight: 200;
+  text-align: left;
+  color: black;
+}
+
+.flexWrap div img {
+  width: 170px;
+  height: 150px;
+  border-radius: 5%;
+}
+
+.date {
+  margin-left: 5px;
+  font-weight: 300;
+  font-size: 10px;
+  color: green;
+}
+
+.user {
+  margin-left: 5px;
+  font-weight: 300;
+  font-size: 10px;
+  color: green;
+}
+
+.content {
+  margin-left: 5px;
+  font-size: 11px;
+  color: #939393;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+.price {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.title {
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+.post {
+  border-radius: 5%;
+  border: #d1d0d0 solid 0.1px;
+}
+
+.search {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.search input {
+  width: 91%;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.search img {
+  position: absolute;
+  width: 17px;
+  top: 12px;
+  right: 20px;
+}
+
+a {
+  text-decoration-line: none;
+}
+
+.funcDiv1 {
+  /* display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 30px -40px 0px 25px;
+    width: 87%; */
+  width: 20px;
+}
+
+.insert {
+  background-color: rgba(0, 0, 0, 0.382);
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  width: 250px;
+  margin-top: 20px;
+  font-size: small;
+  border: 0px;
+}
+
+.insert a {
+  text-decoration-line: none;
+  color: white;
+}

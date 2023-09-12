@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      maximum-scale="1,"
+      minimum-scale="1"
+    />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/css/product-detail.css' %}" />
+  </head>
+  <body>
+    <div class="product">
+      {% if product.image %}
+      <img src="{{product.image.url}}" alt="" height="600" />
+      {% endif %}
+      <p class="store-name">{{product.seller.first_name}}</p>
+      <p class="product-name">{{product.productname}}</p>
+      <p style="color: #676767">{{product.contents}}</p>
+      <div class="priceWrap">
+        <div class="price-info">가격</div>
+        <div class="price">
+          <div class="price-num">{{product.price}}</div>
+          &nbsp;원
+        </div>
+      </div>
+      <p>좋아요 수 : {{product.like_user.all|length}}</p>
+      {% if check %}
+      <div class="buyWrap">
+        <button
+          class="add-to-cart"
+          onclick="location.href='/tran/{{product.pk}}/modify'"
+        >
+          수정하기
+        </button>
+        <button
+          class="add-to-cart"
+          onclick="location.href='/tran/{{product.pk}}/delete'"
+          style="margin-bottom: 10px"
+        >
+          삭제하기
+        </button>
+        <button
+          class="buy"
+          onclick="location.href='/chat/{{product.pk}}'"
+          style="margin-bottom: 20px"
+        >
+          채팅창
+        </button>
+      </div>
+      {% endif %} {% if not check %}
+      <div class="buyWrap">
+        <button class="buy" onclick="location.href='/chat/{{product.pk}}'">
+          채팅하기
+        </button>
+        <form action="{% url 'product_like' product.pk %}" method="POST">
+          {% csrf_token %} {% if request.user in product.like_user.all %}
+          <button
+            class="add-to-cart"
+            id="add-cart"
+            onclick="location.href='/tran/{{product.pk}}/like'"
+          >
+            좋아요 취소
+          </button>
+          {% else %}
+          <button
+            class="add-to-cart"
+            id="add-cart"
+            onclick="location.href='/tran/{{product.pk}}/like'"
+          >
+            좋아요
+          </button>
+          {% endif %}
+        </form>
+      </div>
+      {% endif %}
+
+      <table>
+        <p style="margin-bottom: 30px">다른 {{ product.productname }} 가격</p>
+        {% if products %}
+        <div class="flexWrap">
+          {% for product in products %}
+          <div onclick="location.href='/trans/list/{{product.pk}}'">
+            <img src="{{product.image.url}}" />
+            <p>{{product.productname}}</p>
+            <p>{{product.seller.first_name}}</p>
+            <!-- <p class="price">{{product.productname}}</p> -->
+            <p>{{ product.price }}원</p>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p style="margin-bottom: 30px">
+          다른 {{ product.productname }} 가격 정보가 없습니다.
+        </p>
+        {% endif %}
+      </table>
+    </div>
+    {% if request.user in product.like_user.all %}
+    <script>
+      const removeCartBTN = document.getElementById("add-cart");
+      removeCartBTN.addEventListener("click", addCart);
+      function addCart() {
+        const confirmed = confirm(
+          "해당 상품을 좋아요 목록에서 제거하시겠습니까?"
+        );
+        if (confirmed) {
+          const confirmed = confirm(
+            "해당 상품이 좋아요 목록에서 제거했습니다."
+          );
+        }
+      }
+    </script>
+    {% else %}
+    <script>
+      const addCartBTN = document.getElementById("add-cart");
+      addCartBTN.addEventListener("click", addCart);
+      function addCart() {
+        const confirmed = confirm("해당 상품을 좋아요 목록에 담으시겠습니까?");
+        if (confirmed) {
+          const confirmed = confirm("해당 상품이 좋아요 목록에 담겼습니다.");
+        }
+      }
+    </script>
+    {% endif %}
+  </body>
+</html>

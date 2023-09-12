@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/css/market.css' %}">
+</head>
+<body>
+    <header>
+        <h2 style="text-align: center; padding: 20px;">🥦 {{user}}님이 작성하신 봉사 목록</h2>
+        <!-- {% if user.is_authenticated %}
+        <p>안녕하세요 🥦 {{user}}님 </p>
+        {% endif %} -->
+
+        <form method="POST" >
+            {% csrf_token %}
+            <input type="text" name="searched">
+            <button type="submit" id="search_btn">검색</button>
+    
+            {% if searched %}        
+            <p> 검색하신 {{ searched }} 정보입니다. </p>
+            <section id="tab-section-1" class="tab-section">
+                <div class="flexWrap">
+                    {% for post in posts %}
+                    <div onclick="location.href='/volunteer/list/{{post.pk}}'"><img src="{{post.image.url}}">
+                        <p class="title">{{post.writer}}</p>
+                        <p class="product" id="apple">{{post.title}}</p>
+                        <p class="price">{{ post.hours }}시간</p>
+                    </div>     
+                    {% endfor %} 
+                </div>
+            </section>
+            {% else %}        
+            <section id="tab-section-1" class="tab-section">
+                <div class="flexWrap">
+                    {% for post in posts %}
+                    <div onclick="location.href='/volunteer/list/{{post.pk}}'"><img src="{{post.image.url}}">
+                        <p class="title">{{post.writer}}</p>
+                        <p class="product" id="apple">{{post.title}}</p>
+                        <p class="price">{{ post.hours }}시간</p>
+                    </div>     
+                    {% endfor %} 
+                </div>
+            </section>
+            {% endif %}
+        </form>
+
+    </header>
+    <script>
+        const $nav = document.querySelector('#tab-button-nav')
+        const $sections = document.querySelectorAll('.tab-section');
+
+        $nav.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('tab-button')) {
+                return;
+            }
+
+            const focusedTabId = e.target.dataset.tabSection;
+
+            $sections.forEach(($section) => {
+                if ($section.id === focusedTabId) {
+                    $section.removeAttribute('hidden');
+                } else {
+                    $section.setAttribute('hidden', true);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

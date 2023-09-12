@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/css/market.css' %}" />
+  </head>
+  <body>
+    <div class="header">
+      <h2>농산물 모음</h2>
+      <p>믿을 수 있는 농산물 거래</p>
+    </div>
+    <div>
+      {% if user.is_staff %}
+      <div style="float: right">
+        <button
+          class="newspost"
+          style="
+            background-color: white;
+            border-radius: 5px;
+            border: 0;
+            box-shadow: 2px 2px 2px 2px gray;
+          "
+        >
+          <a
+            href="{% url 'tranpost' %}"
+            style="text-decoration-line: none; color: black"
+            >글쓰기</a
+          >
+        </button>
+      </div>
+      {% endif %}
+    </div>
+    <div class="flexWrap">
+      <div class="fruits">
+        <a href="{% url 'productlist' %}?type=fruits"
+          ><img src="{% static '/img/fruit.jpg' %}" /></a
+        >과일
+      </div>
+      <div class="vegetable">
+        <a href="{% url 'productlist' %}?type=vegetable"
+          ><img src="{% static '/img/vegetable.jpg' %}" /></a
+        >채소
+      </div>
+      <div class="herbs">
+        <a href="{% url 'productlist' %}?type=herbs"
+          ><img src="{% static '/img/herb.jpg' %}" /></a
+        >나물
+      </div>
+      <div class="mushroom">
+        <a href="{% url 'productlist' %}?type=mushroom"
+          ><img src="{% static '/img/mushroom.jpg' %}" /></a
+        >버섯
+      </div>
+      <div class="grain">
+        <a href="{% url 'productlist' %}?type=grain"
+          ><img src="{% static '/img/grain.jpg' %}" /></a
+        >곡물
+      </div>
+      <div class="nuts">
+        <a href="{% url 'productlist' %}?type=nuts"
+          ><img src="{% static '/img/nuts.jpg' %}" /></a
+        >견과
+      </div>
+      <div class="root">
+        <a href="{% url 'productlist' %}?type=root"
+          ><img src="{% static '/img/root.jpg' %}" /></a
+        >뿌리
+      </div>
+      <div class="root">
+        <a href="{% url 'productlist' %}?type=non-specified"
+          ><img src="{% static '/img/non.jpeg' %}" /></a
+        >기타 작물
+      </div>
+      <div class="root">
+        <a href="{% url 'productlist' %}?type= "
+          ><img src="{% static '/img/all.jpeg' %}" /></a
+        >전체
+      </div>
+    </div>
+    <img
+      src="{% static '/img/recipe-banner.png' %}"
+      style="width: 100vw; position: absolute; left: 0%; margin-top: 40px"
+    />
+    <p class="big">농산물의 풍부함으로 무한한 요리의 세계를 만들어보세요!</p>
+    <a class="small" href="#">레시피 보러가기</a>
+  </body>
+</html>

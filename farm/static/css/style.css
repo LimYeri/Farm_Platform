@@ -1,0 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&family=Roboto:wght@900&display=swap");
+* {
+  font-family: "Noto Sans KR", sans-serif;
+  overflow-x: hidden;
+}
+
+/* 상단 인사 */
+.welcome {
+  padding: 20px 0px 0px 20px;
+  display: flex;
+}
+
+.welcome img {
+  width: 35px;
+  height: 35px;
+  justify-content: left;
+  padding: 20px;
+  /* padding-bottom: 20px; */
+  padding-right: 10px;
+  margin-left: 10px;
+  margin-top: 2px;
+}
+
+/* 배너 슬라이드 */
+.slide1 {
+  width: 344px;
+  height: 194px;
+  border-radius: 15px;
+  margin: 0px 0px 20px 17px;
+  background-image: url("/static/img/slide1.png");
+}
+
+.slide1 .headline {
+  color: #fff;
+  font-size: 27px;
+  font-weight: 700;
+  margin-left: 15px;
+}
+
+.slide1 .content {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 200;
+  margin-left: 15px;
+}
+
+.slide2 {
+  width: 344px;
+  height: 194px;
+  border-radius: 15px;
+  background-image: url("/static/img/slide2.png");
+  margin: 0px 0px 0px 17px;
+}
+
+.slide2 .headline {
+  color: #fff;
+  font-size: 27px;
+  font-weight: 700;
+  padding: 15px;
+}
+
+.slide2 .content {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 200;
+  margin-left: 15px;
+  margin-top: -20px;
+}
+
+.slide3 {
+  width: 344px;
+  height: 194px;
+  border-radius: 15px;
+  background-image: url("/static/img/slide3.png");
+  margin: 0px 0px 0px 17px;
+}
+
+.slide3 .headline {
+  color: #fff;
+  font-size: 27px;
+  font-weight: 700;
+  padding: 15px;
+}
+
+.slide3 .content {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 200;
+  margin-left: 15px;
+  margin-top: 40px;
+}
+
+.slideWrap {
+  width: 500px;
+  height: 200px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.slide-list {
+  display: flex;
+  transition: 0.8s ease-out;
+}
+
+.button-list {
+  text-align: center;
+}
+
+/* 날씨 */
+.weatherWrap h2 {
+  padding: 15px;
+}
+
+.weatherWrap img {
+  position: absolute;
+  margin-top: 2px;
+}
+
+.weatherSection {
+  width: 344px;
+  height: 150px;
+  background-color: #1e4527;
+  border-radius: 15px;
+  margin: -20px 0px 20px 17px;
+  display: flex;
+}
+
+.section_left {
+  width: 172px;
+  height: 150px;
+}
+
+.time {
+  font-size: 12px;
+  font-weight: 400;
+  padding: 10px 0px 0px 15px;
+  color: white;
+}
+
+.weatherIMG {
+  padding: 15px 0px 0px 15px;
+}
+
+.weatherIMG img {
+  width: 25px;
+}
+
+#temperature {
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 900;
+  padding: 35px 0px 0px 15px;
+}
+
+#description {
+  color: #fff;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 200;
+  padding: 0px 0px 0px 15px;
+}
+
+.humidity {
+  margin-top: 5px;
+}
+.humidity img {
+  width: 25px;
+  padding: 10px;
+}
+
+#humidity {
+  position: absolute;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 900;
+  right: 20%;
+  margin-top: 5px;
+}
+
+.sunrise {
+  margin-top: 45px;
+}
+
+.sunrise img {
+  width: 25px;
+  padding: 10px;
+}
+
+.sunrise #sunrise_time {
+  position: absolute;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 900;
+  right: 13.5%;
+  margin-top: 4px;
+}
+
+.sunset {
+  margin-top: 45px;
+}
+
+.sunset img {
+  width: 25px;
+  padding: 10px;
+}
+
+.sunset #sunset_time {
+  position: absolute;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 900;
+  right: 13.5%;
+  margin-top: 4px;
+}
+
+/* 기능 아이콘 */
+.funcDiv1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 30px -40px 0px 25px;
+  width: 87%;
+}
+
+.funcDiv2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0px -40px 0px 25px;
+  width: 63.5%;
+  margin-top: 43px;
+}

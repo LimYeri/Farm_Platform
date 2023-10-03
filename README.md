@@ -50,7 +50,7 @@
 
 |               | github                             |
 | ------------- | ---------------------------------- |
-| 김다빈 |    |https://github.com/KIMDAB1N
+| 김다빈 |    https://github.com/KIMDAB1N|
 | 심규민      |         |
 
 

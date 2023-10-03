@@ -59,7 +59,7 @@
 |               | github                             |
 | ------------- | ---------------------------------- |
 | 김지원  |https://github.com/kjw4420    |
-| 임예리        |         |
+| 임예리        |  https://github.com/LimYeri       |
 | 조서현      |   https://github.com/westnowise      |
 
 ### 디자인

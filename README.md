@@ -51,7 +51,7 @@
 |               | github                             |
 | ------------- | ---------------------------------- |
 | 김다빈 |    https://github.com/KIMDAB1N|
-| 심규민      |         |
+| 심규민      |   https://github.com/gyumin6349      |
 
 
 ### back-end

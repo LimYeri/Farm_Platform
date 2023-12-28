@@ -132,11 +132,11 @@ async def receive(self, text_data):
  </div>
 
 ## :bookmark_tabs: Chat
-농산물 거래/ 봉사활동 신청 시 채팅 사용
+농산물 거래/ 봉사활동 신청 시 채팅 사용   <br>
  <div align="center">
 <img width="512" alt="스크린샷 2023-12-29 오전 2 44 13" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/59ed4c47-c01e-49f4-98b7-4a101c1d9e74">
  </div>
- - 같은 게시글에서 채팅창 버튼 클릭시 동일한 채팅방으로 이동(pk값: 게시글 pk값)
+      - 같은 게시글에서 채팅창 버튼 클릭시 동일한 채팅방으로 이동(pk값: 게시글 pk값)
     
     채팅 내용 전송 시, 내용 작성자 닉네임(user. first_name)도 함께 전송  
     
@@ -145,10 +145,13 @@ async def receive(self, text_data):
 <div align="center">
 <img width="719" alt="스크린샷 2023-12-29 오전 2 44 50" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/98815d33-9c0d-4a89-b681-a78f9b7e8598">
  </div>
-Django Channels, WebSocket, ASGI/Daphne Server: 채팅 통신
+     - Django Channels, WebSocket, ASGI/Daphne Server: 채팅 통신 <br>
+
+
  <div align="center">
-<img width="584" alt="스크린샷 2023-12-29 오전 2 45 30" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/f10acbf9-a214-42af-a1b9-527c50f45de9">통신</div>
-Docker위에 Redis 설치: 채팅 데이터 관리   
+<img width="584" alt="스크린샷 2023-12-29 오전 2 45 30" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/f10acbf9-a214-42af-a1b9-527c50f45de9"><br>통신</div> 
+<br>
+      - Docker위에 Redis 설치: 채팅 데이터 관리 
 
 ## 👩🏻‍💻 멤버
 

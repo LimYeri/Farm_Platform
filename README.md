@@ -70,6 +70,68 @@
  ✔️**마이페이지:**<br>
 -회원별 활동 파악. 회원 정보, 로그아웃 및 내가 찜한 상품, 내가 찜한 봉사, 나의 농사랑 방으로 자신이 스크랩한 글과 작성한 게시판 글을 관리한다.<br><br>
 
+## :bookmark_tabs: 문제해결: 채팅 기능 개선
+처음 장고 Channels로 채팅 기능을 만들었을 때는 사용자가 채팅방에서 나누는 대화가 행 바꿈으로만 구별되어 누구와 대화를 나누고 있는지 알 수 없었습니다. 또 두 사람이 겹쳐서 같은 말을 했을 때 누가 한 말인지도 구분하기 어려웠습니다. 이 문제를 해결하기 위해서는 사용자 아이디 노출 기능이 필요하다고 생각했습니다.
+ <div align="center">
+<img width="1358" alt="스크린샷 2023-12-07 오전 2 58 33" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/6740cadc-09b8-42c0-9c26-04ca57b7013a">
+개선이 필요한  Chatting 창
+</div>
+고민 끝에, 채팅방 html에서 <input type="text" id="username" value="{{user.first_name}}" />으로 현재 로그인된  user의 이름을 받고 js와   consumers.py를 통해 Sender(==user.first_name)을 전달하도록 코드를 변경했습니다. 
+
+- consumers.py:  모든 요청을 받아들이는 비동기적인 WebSocket 소비자 역할을 하게 된다. 즉 메시지를 클라이언트로부터 받아서 그대로 클라이언트에게 전달하는 기능을 함.
+
+```python
+function sendMessage() {
+        var sender = document.getElementById("username").value;
+        var message = document.getElementById("message").value;
+
+        chatSocket.send(
+          JSON.stringify({
+            message: message,
+            sender: sender,
+          })
+        );
+
+        document.getElementById("message").value = "";
+      }
+```
+ <div align="center">
+chat.html/js
+     </div>
+     
+```python
+async def receive(self, text_data):
+        text_data_json = json.loads(text_data)
+        message = text_data_json['message']
+        sender = text_data_json['sender']
+      
+        await self.channel_layer.group_send(
+            self.room_group_name,
+            {
+                'type': 'chat_message',
+                'message': message,
+                'sender':sender  #이거 추가 사항
+            }
+        )
+        
+
+    # Receive message from room group
+    async def chat_message(self, event):
+        message = event['message']
+        sender=event['sender']
+    
+
+        # Send message to WebSocket
+        await self.send(text_data=json.dumps({
+            'message': message,
+            'sender':sender,  #이거 추가 사항
+        }))
+```
+ <div align="center">
+        chat/consumers.py
+ </div>
+
+
 ## 👩🏻‍💻 멤버
 
 

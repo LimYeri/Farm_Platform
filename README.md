@@ -45,9 +45,11 @@
  ✔️ **일손 구하기:** 일손 구인 게시판, 소규모/단기 농촌 봉사활동  <br>
  ✔️ **농산물 마켓:** 농부가 재배부터 판매까지 믿고 사는 농산물  <br>
  ✔️ **농약 정보:** 농약 추천부터 사용방법까지 농약에 대한 모든 것 <br><br>
- 
-<img width="707" alt="스크린샷 2023-12-29 오전 2 33 11" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/9389748b-ae12-4712-a309-8284586830a4"><img width="707" alt="스크린샷 2023-12-29 오전 2 33 21" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/9c8eb038-6fd2-4af9-b58a-c8c36a797193">
+ <div align="center">
+<img width="707" alt="스크린샷 2023-12-29 오전 2 33 11" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/9389748b-ae12-4712-a309-8284586830a4"><br>
+     <img width="707" alt="스크린샷 2023-12-29 오전 2 33 21" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/9c8eb038-6fd2-4af9-b58a-c8c36a797193"><br>
 <img width="707" alt="스크린샷 2023-12-29 오전 2 33 28" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/eec54bd3-cf5d-4a76-a5c7-3ab1aee633f8">
+ </div>
 
 
 

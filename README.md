@@ -76,7 +76,11 @@
 <img width="1358" alt="스크린샷 2023-12-07 오전 2 58 33" src="https://github.com/kjw4420/Farm_Platform/assets/97749184/6740cadc-09b8-42c0-9c26-04ca57b7013a">
 개선이 필요한  Chatting 창
 </div>
-고민 끝에, 채팅방 html에서 <input type="text" id="username" value="{{user.first_name}}" />으로 현재 로그인된  user의 이름을 받고 js와   consumers.py를 통해 Sender(==user.first_name)을 전달하도록 코드를 변경했습니다. 
+고민 끝에, 채팅방 html에서 현재 로그인된  user의 이름을 받고 js와 consumers.py를 통해 Sender(==user.first_name)을 전달하도록 코드를 변경했습니다. 
+
+```html
+    <input type="text" id="username" value="{{user.first_name}}" />
+ ```
 
 - consumers.py:  모든 요청을 받아들이는 비동기적인 WebSocket 소비자 역할을 하게 된다. 즉 메시지를 클라이언트로부터 받아서 그대로 클라이언트에게 전달하는 기능을 함.
 
